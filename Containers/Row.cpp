@@ -1,5 +1,5 @@
 #include "Row.hpp"
-#include <iostream>
+
 namespace cstr
 {
 	Row::Row(sf::IntRect r, bool s)
@@ -63,7 +63,7 @@ namespace cstr
 			{
 				if(totalWidth > rect.width - 2 * getBorderSize())
 				{
-					w->setSize({static_cast<unsigned>(rect.width / getWidgets().size() - 2 * getBorderSize()),
+					w->setSize({static_cast<unsigned>(w->getGlobalBounds().width * (rect.width / totalWidth) - 2 * getBorderSize()),
 								static_cast<unsigned>(rect.height - 2 * getBorderSize())});
 				}
 				else
