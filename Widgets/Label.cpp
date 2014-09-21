@@ -7,6 +7,7 @@ namespace cstr
 	{
 		text.setFont(f);
 		text.setString(string);
+		text.setCharacterSize(100);
 		text.setOrigin({text.getLocalBounds().left, text.getLocalBounds().top});
 	}
 
@@ -42,7 +43,8 @@ namespace cstr
 	void Label::setSize(sf::Vector2u size)
 	{
 		text.setCharacterSize(size.y);
-		text.setCharacterSize(text.getCharacterSize() * static_cast<float>(size.x / text.getGlobalBounds().width));
+		if(text.getLocalBounds().width > size.x)
+			text.setCharacterSize(size.y * static_cast<float>(size.x) / text.getLocalBounds().width);
 		text.setOrigin({text.getLocalBounds().left, text.getLocalBounds().top});
 	}
 	
