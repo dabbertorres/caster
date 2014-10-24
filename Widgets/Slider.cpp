@@ -25,7 +25,7 @@ namespace cstr
 				{
 					if(track.getGlobalBounds().left - slider.getGlobalBounds().width / 2 <= event.mouseMove.x && 
 					event.mouseMove.x <= track.getGlobalBounds().left + track.getGlobalBounds().width - slider.getGlobalBounds().width / 2)
-						slider.setPosition(event.mouseMove.x, slider.getGlobalBounds().top);
+						slider.setPosition(event.mouseMove.x - slider.getGlobalBounds().width / 2, slider.getGlobalBounds().top);
 					else if(event.mouseMove.x <= track.getGlobalBounds().left - slider.getGlobalBounds().width / 2)
 						slider.setPosition(track.getGlobalBounds().left - slider.getGlobalBounds().width / 2, slider.getGlobalBounds().top);
 					else
@@ -66,8 +66,11 @@ namespace cstr
 	
 	void Slider::setValue(float v)
 	{
-		value = v;
-		slider.setPosition(track.getPosition().x + track.getGlobalBounds().width * value, slider.getPosition().y);
+		if(0 <= v && v <= 1)
+		{
+			value = v;
+			slider.setPosition(track.getPosition().x + track.getGlobalBounds().width * value, slider.getPosition().y);
+		}
 	}
 	
 	float Slider::getValue() const
